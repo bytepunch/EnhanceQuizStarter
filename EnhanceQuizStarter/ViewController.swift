@@ -30,15 +30,27 @@ class ViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+
+
+    @IBOutlet weak var answer1Button: UIButton!
+    @IBOutlet weak var answer2Button: UIButton!
+    @IBOutlet weak var answer3Button: UIButton!
+    @IBOutlet weak var answer4Button: UIButton!
+    
+    
     @IBOutlet weak var playAgainButton: UIButton!
 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadGameStartSound()
-        playGameStartSound()
+        
+        //playGameStartSound()
+        
+        
         displayQuestion()
     }
     
@@ -54,19 +66,47 @@ class ViewController: UIViewController {
         AudioServicesPlaySystemSound(gameSound)
     }
     
-    
-    
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.trivia.count)
-        let questionDictionary = questionProvider.trivia[indexOfSelectedQuestion]
+        
+        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
+        
+        // Reset colors of all buttons
+        answer1Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
+        answer1Button.tintColor = UIColor.white
+        answer2Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
+        answer2Button.tintColor = UIColor.white
+        answer3Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
+        answer3Button.tintColor = UIColor.white
+        answer4Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
+        answer4Button.tintColor = UIColor.white
+
+        let questionDictionary = questionProvider.questions[indexOfSelectedQuestion]
         questionField.text = questionDictionary["Question"]
+        
+        answer1Button.setTitle(questionDictionary["Answer1"], for: .normal)
+        answer2Button.setTitle(questionDictionary["Answer2"], for: .normal)
+        answer3Button.setTitle(questionDictionary["Answer3"], for: .normal)
+        
+        // In case show the 4th button
+        if questionDictionary["Choices"] == "4"{
+            answer4Button.setTitle(questionDictionary["Answer4"], for: .normal)
+            answer4Button.isHidden = false
+        } else{
+            answer4Button.isHidden = true
+        }
+        
         playAgainButton.isHidden = true
+        
     }
     
     func displayScore() {
-        // Hide the answer uttons
-        trueButton.isHidden = true
-        falseButton.isHidden = true
+        
+        // Hide the answer Buttons
+        answer1Button.isHidden = true
+        answer2Button.isHidden = true
+        answer3Button.isHidden = true
+        answer4Button.isHidden = true
+        
         
         // Display play again button
         playAgainButton.isHidden = false
@@ -99,15 +139,19 @@ class ViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func checkAnswer(_ sender: UIButton) {
+        
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = questionProvider.trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
+        let selectedQuestionDict = questionProvider.questions[indexOfSelectedQuestion]
+        //let correctAnswer = selectedQuestionDict["Answer"]
         
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
             correctQuestions += 1
             questionField.text = "Correct!"
+            sender.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+            sender.tintColor = UIColor.black
+            
         } else {
             questionField.text = "Sorry, wrong answer!"
         }
@@ -118,9 +162,11 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain(_ sender: UIButton) {
         // Show the answer buttons
-        trueButton.isHidden = false
-        falseButton.isHidden = false
-        
+        answer1Button.isHidden = false
+        answer2Button.isHidden = false
+        answer3Button.isHidden = false
+        answer4Button.isHidden = false
+
         questionsAsked = 0
         correctQuestions = 0
         nextRound()
