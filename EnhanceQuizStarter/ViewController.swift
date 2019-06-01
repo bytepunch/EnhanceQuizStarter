@@ -50,7 +50,6 @@ class ViewController: UIViewController {
         
         //playGameStartSound()
         
-        
         displayQuestion()
     }
     
@@ -152,8 +151,37 @@ class ViewController: UIViewController {
             sender.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
             sender.tintColor = UIColor.black
             
+            
+            
+            
         } else {
             questionField.text = "Sorry, wrong answer!"
+            sender.backgroundColor = UIColor(red: 87/255, green: 0, blue: 0, alpha: 1.0)
+            sender.tintColor = UIColor.black
+            
+            switch selectedQuestionDict["Correct"]{
+            case "1":
+                answer1Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+                answer1Button.tintColor = UIColor.black
+                animateButton(self.answer1Button)
+            case "2":
+                answer2Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+                answer2Button.tintColor = UIColor.black
+                animateButton(self.answer2Button)
+            case "3":
+                answer3Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+                answer3Button.tintColor = UIColor.black
+                animateButton(self.answer3Button)
+            case "4":
+                answer4Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+                answer4Button.tintColor = UIColor.black
+                animateButton(self.answer4Button)
+            default:
+                break
+            }
+            
+            
+            
         }
         
         loadNextRound(delay: 2)
@@ -170,6 +198,24 @@ class ViewController: UIViewController {
         questionsAsked = 0
         correctQuestions = 0
         nextRound()
+    }
+    
+    
+    // Source:
+    func animateButton(_ buttonToAnimate: UIView){
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.8, options: .curveEaseIn,
+                       animations: {
+                        buttonToAnimate.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
+        }) { (_) in
+            UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
+                buttonToAnimate.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }, completion: nil)
+        }
+        
+        
+        
     }
     
 
