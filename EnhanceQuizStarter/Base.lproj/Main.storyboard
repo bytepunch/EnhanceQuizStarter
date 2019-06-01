@@ -70,10 +70,22 @@
                                     <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DS-Q9-gCH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-1C-ga6" userLabel="Next Question Button">
+                                <rect key="frame" x="16" y="520.5" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.57647058819999997" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Next Question"/>
+                                <connections>
+                                    <action selector="newxtQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baF-iR-oiJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w1Q-1C-ga6" secondAttribute="trailing" constant="16" id="1V5-pH-bm3"/>
                             <constraint firstItem="qYh-2d-v8I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3XB-5K-fIj"/>
+                            <constraint firstItem="w1Q-1C-ga6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="D0X-uE-61T"/>
                             <constraint firstItem="dCF-BL-dDa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="EYq-sZ-M7Q"/>
                             <constraint firstItem="CSn-ih-qRR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Hi4-RS-Q3Q"/>
                             <constraint firstItem="qYh-2d-v8I" firstAttribute="top" secondItem="CSn-ih-qRR" secondAttribute="bottom" constant="50" id="Mpp-P2-jRR"/>
@@ -84,6 +96,7 @@
                             <constraint firstItem="dCF-BL-dDa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="W6d-ka-rdR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qYh-2d-v8I" secondAttribute="trailing" constant="16" id="efU-5s-vkr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zAL-gk-o3B" secondAttribute="trailing" constant="16" id="ekk-L9-eGT"/>
+                            <constraint firstItem="w1Q-1C-ga6" firstAttribute="top" secondItem="zAL-gk-o3B" secondAttribute="bottom" constant="50" id="k0y-OU-2Tp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X4C-bg-A4X" secondAttribute="trailing" constant="16" id="kOQ-Pc-RKB"/>
                             <constraint firstItem="X4C-bg-A4X" firstAttribute="top" secondItem="qYh-2d-v8I" secondAttribute="bottom" constant="50" id="nFm-4i-q0P"/>
                             <constraint firstItem="zAL-gk-o3B" firstAttribute="top" secondItem="X4C-bg-A4X" secondAttribute="bottom" constant="50" id="o3R-Kg-rcZ"/>
@@ -99,6 +112,7 @@
                         <outlet property="answer2Button" destination="qYh-2d-v8I" id="WJN-x7-R7o"/>
                         <outlet property="answer3Button" destination="X4C-bg-A4X" id="9oo-eu-1LB"/>
                         <outlet property="answer4Button" destination="zAL-gk-o3B" id="F7E-yb-Acg"/>
+                        <outlet property="nextQuestionButton" destination="w1Q-1C-ga6" id="5dP-gI-kLe"/>
                         <outlet property="playAgainButton" destination="eic-Nx-foS" id="fZz-Md-Y70"/>
                         <outlet property="questionField" destination="dCF-BL-dDa" id="HIQ-UX-KNe"/>
                     </connections>

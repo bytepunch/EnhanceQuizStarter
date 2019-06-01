@@ -31,11 +31,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var questionField: UILabel!
 
-
+    @IBOutlet weak var nextQuestionButton: UIButton!
+    
     @IBOutlet weak var answer1Button: UIButton!
     @IBOutlet weak var answer2Button: UIButton!
     @IBOutlet weak var answer3Button: UIButton!
     @IBOutlet weak var answer4Button: UIButton!
+    
     
     
     @IBOutlet weak var playAgainButton: UIButton!
@@ -105,6 +107,7 @@ class ViewController: UIViewController {
         answer2Button.isHidden = true
         answer3Button.isHidden = true
         answer4Button.isHidden = true
+        nextQuestionButton.isHidden = true
         
         
         // Display play again button
@@ -183,10 +186,14 @@ class ViewController: UIViewController {
             
             
         }
-        
-        loadNextRound(delay: 2)
+        // Go manually with nextQuestionButton
+        //loadNextRound(delay: 2)
     }
     
+    
+    @IBAction func newxtQuestion(_ sender: Any) {
+        nextRound()
+    }
     
     @IBAction func playAgain(_ sender: UIButton) {
         // Show the answer buttons
@@ -194,6 +201,7 @@ class ViewController: UIViewController {
         answer2Button.isHidden = false
         answer3Button.isHidden = false
         answer4Button.isHidden = false
+        nextQuestionButton.isHidden = false
 
         questionsAsked = 0
         correctQuestions = 0
@@ -203,7 +211,6 @@ class ViewController: UIViewController {
     
     // Source:
     func animateButton(_ buttonToAnimate: UIView){
-        
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 0.8, options: .curveEaseIn,
                        animations: {
@@ -213,11 +220,6 @@ class ViewController: UIViewController {
                 buttonToAnimate.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: nil)
         }
-        
-        
-        
     }
-    
-
 }
 
