@@ -25,7 +25,10 @@ struct QuestionProvider{
     
     
     
-    
+    func provideRandomizedQuestions() -> [[String : String]] {
+        let shuffledQuestions = questions.shuffled()
+        return shuffledQuestions
+    }
     
     
     

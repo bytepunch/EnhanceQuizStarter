@@ -13,7 +13,6 @@ import AudioToolbox
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    
     let questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
@@ -21,37 +20,24 @@ class ViewController: UIViewController {
     
     // Question provider
     let questionProvider = QuestionProvider()
-    
-    
+    var questions: [[String:String]] = []
     
     var gameSound: SystemSoundID = 0
     
-    
     // MARK: - Outlets
-    
     @IBOutlet weak var questionField: UILabel!
-
     @IBOutlet weak var nextQuestionButton: UIButton!
-    
     @IBOutlet weak var answer1Button: UIButton!
     @IBOutlet weak var answer2Button: UIButton!
     @IBOutlet weak var answer3Button: UIButton!
     @IBOutlet weak var answer4Button: UIButton!
-    
-    
-    
     @IBOutlet weak var playAgainButton: UIButton!
 
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        questions = questionProvider.provideRandomizedQuestions()
         loadGameStartSound()
-        
         //playGameStartSound()
-        
         displayQuestion()
     }
     
@@ -70,6 +56,9 @@ class ViewController: UIViewController {
     func displayQuestion() {
         
         indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
+        
+        
+        
         
         // Reset colors of all buttons
         answer1Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
@@ -102,16 +91,11 @@ class ViewController: UIViewController {
     
     func displayScore() {
         
-        // Hide the answer Buttons
-        answer1Button.isHidden = true
-        answer2Button.isHidden = true
-        answer3Button.isHidden = true
-        answer4Button.isHidden = true
-        nextQuestionButton.isHidden = true
-        
-        
+        // Hide the answer Button
+        hide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
+
         // Display play again button
-        playAgainButton.isHidden = false
+        unHide(views: playAgainButton)
         
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
     }
@@ -126,6 +110,8 @@ class ViewController: UIViewController {
         }
     }
     
+    // No longer needed
+    /*
     func loadNextRound(delay seconds: Int) {
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer
         let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
@@ -137,9 +123,10 @@ class ViewController: UIViewController {
             self.nextRound()
         }
     }
+    */
+
     
     // MARK: - Actions
-    
     @IBAction func checkAnswer(_ sender: UIButton) {
         
         // Increment the questions asked counter
@@ -154,9 +141,6 @@ class ViewController: UIViewController {
             sender.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
             sender.tintColor = UIColor.black
             
-            
-            
-            
         } else {
             questionField.text = "Sorry, wrong answer!"
             sender.backgroundColor = UIColor(red: 87/255, green: 0, blue: 0, alpha: 1.0)
@@ -164,30 +148,22 @@ class ViewController: UIViewController {
             
             switch selectedQuestionDict["Correct"]{
             case "1":
-                answer1Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
-                answer1Button.tintColor = UIColor.black
-                animateButton(self.answer1Button)
+                mark(correctAnswerButton: answer1Button)
             case "2":
-                answer2Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
-                answer2Button.tintColor = UIColor.black
-                animateButton(self.answer2Button)
+                mark(correctAnswerButton: answer2Button)
             case "3":
-                answer3Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
-                answer3Button.tintColor = UIColor.black
-                animateButton(self.answer3Button)
+                mark(correctAnswerButton: answer3Button)
             case "4":
-                answer4Button.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
-                answer4Button.tintColor = UIColor.black
-                animateButton(self.answer4Button)
+                mark(correctAnswerButton: answer4Button)
             default:
                 break
             }
-            
-            
-            
+ 
         }
+
         // Go manually with nextQuestionButton
         //loadNextRound(delay: 2)
+
     }
     
     
@@ -197,12 +173,9 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain(_ sender: UIButton) {
         // Show the answer buttons
-        answer1Button.isHidden = false
-        answer2Button.isHidden = false
-        answer3Button.isHidden = false
-        answer4Button.isHidden = false
-        nextQuestionButton.isHidden = false
+        unHide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
 
+        questions = questionProvider.provideRandomizedQuestions()
         questionsAsked = 0
         correctQuestions = 0
         nextRound()
@@ -221,5 +194,25 @@ class ViewController: UIViewController {
             }, completion: nil)
         }
     }
+    
+    func hide(views: UIView...){
+        for view in views{
+            view.isHidden = true
+        }
+    }
+
+    func unHide(views: UIView...){
+        for view in views{
+            view.isHidden = false
+        }
+    }
+    
+    func mark(correctAnswerButton: UIView){
+        correctAnswerButton.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+        correctAnswerButton.tintColor = UIColor.black
+        animateButton(correctAnswerButton)
+    }
+
+    
 }
 
