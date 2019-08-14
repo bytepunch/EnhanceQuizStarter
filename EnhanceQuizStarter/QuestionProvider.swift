@@ -20,16 +20,12 @@ struct QuestionProvider{
         ["Question": "Who invented the telephone?", "Answer1": "Johnston", "Answer2": "Bell", "Answer3": "Jimmy", "Correct": "2", "Choices": "3" ],
         ["Question": "Who discovered penicillin?", "Answer1": "Johnston", "Answer2": "Bell", "Answer3": "Fleming", "Correct": "3", "Choices": "3" ],
         ["Question": "What temperature does water boil at?", "Answer1": "95C", "Answer2": "100C", "Answer3": "70C", "Answer4": "50C", "Correct": "2", "Choices": "4" ],
-        ["Question": "What artist said he would eat his wife when she died?", "Answer1": "van Gogh", "Answer2": "Rembrandt", "Answer3": "Dali", "Answer4": "Baum", "Correct": "3", "Choices": "4" ]
+        ["Question": "What artist said he would eat his wife when she died?", "Answer1": "van Gogh", "Answer2": "Rembrandt", "Answer3": "Dali", "Answer4": "Vermeer", "Correct": "3", "Choices": "4" ]
     ]
-    
-    
     
     func provideRandomizedQuestions() -> [[String : String]] {
         let shuffledQuestions = questions.shuffled()
         return shuffledQuestions
     }
-    
-    
     
 }

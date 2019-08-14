@@ -5,6 +5,11 @@
 //  Created by Pasan Premaratne on 3/12/18.
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
+// App icon lent from http://quizatclass.com/
+
+
+
+
 
 import UIKit
 import GameKit
@@ -13,10 +18,12 @@ import AudioToolbox
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    let questionsPerRound = 4
+    var questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
     var indexOfSelectedQuestion = 0
+    let cornerRadius = 10
+    var timer: Timer? = nil
     
     // Question provider
     let questionProvider = QuestionProvider()
@@ -32,13 +39,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var answer3Button: UIButton!
     @IBOutlet weak var answer4Button: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
-
+    
+    @IBOutlet weak var timerSwitch: UISwitch!
+    
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    
+    @IBOutlet weak var gameContainerStackView: UIStackView!
+    @IBOutlet weak var startContainerStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         questions = questionProvider.provideRandomizedQuestions()
-        loadGameStartSound()
-        //playGameStartSound()
-        displayQuestion()
+        
+        //print(questions)
+        
+        // Rounded corners for all buttons
+        let buttons = [answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton, playAgainButton]
+        for button in buttons{
+            button?.layer.cornerRadius = CGFloat(cornerRadius)
+            button?.clipsToBounds = true
+        }
+        
+        
+        if questionsPerRound < questionProvider.provideRandomizedQuestions().count{
+            questionsPerRound = questionProvider.provideRandomizedQuestions().count
+        }
+        
+     
     }
     
     // MARK: - Helpers
@@ -55,22 +84,13 @@ class ViewController: UIViewController {
     
     func displayQuestion() {
         
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
-        
-        
-        
-        
         // Reset colors of all buttons
-        answer1Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
-        answer1Button.tintColor = UIColor.white
-        answer2Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
-        answer2Button.tintColor = UIColor.white
-        answer3Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
-        answer3Button.tintColor = UIColor.white
-        answer4Button.backgroundColor = UIColor(red: 12/255, green: 121/255, blue: 150/255, alpha: 1.0)
-        answer4Button.tintColor = UIColor.white
+        reset(answerButtons: answer1Button, answer2Button, answer3Button, answer4Button)
 
-        let questionDictionary = questionProvider.questions[indexOfSelectedQuestion]
+        
+        //indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
+        //let questionDictionary = questionProvider.questions[indexOfSelectedQuestion]
+        let questionDictionary = questions[questionsAsked]
         questionField.text = questionDictionary["Question"]
         
         answer1Button.setTitle(questionDictionary["Answer1"], for: .normal)
@@ -80,13 +100,11 @@ class ViewController: UIViewController {
         // In case show the 4th button
         if questionDictionary["Choices"] == "4"{
             answer4Button.setTitle(questionDictionary["Answer4"], for: .normal)
-            answer4Button.isHidden = false
+            unHide(views: answer4Button)
         } else{
-            answer4Button.isHidden = true
+            hide(views: answer4Button)
         }
-        
-        playAgainButton.isHidden = true
-        
+        hide(views: playAgainButton)
     }
     
     func displayScore() {
@@ -106,6 +124,11 @@ class ViewController: UIViewController {
             displayScore()
         } else {
             // Continue game
+            
+            if timerSwitch.isOn{
+                startTimer()
+            }
+            
             displayQuestion()
         }
     }
@@ -127,45 +150,32 @@ class ViewController: UIViewController {
 
     
     // MARK: - Actions
-    @IBAction func checkAnswer(_ sender: UIButton) {
+    
+    @IBAction func pressStart(_ sender: UIButton) {
         
-        // Increment the questions asked counter
-        questionsAsked += 1
         
-        let selectedQuestionDict = questionProvider.questions[indexOfSelectedQuestion]
-        //let correctAnswer = selectedQuestionDict["Answer"]
         
-        if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
-            correctQuestions += 1
-            questionField.text = "Correct!"
-            sender.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
-            sender.tintColor = UIColor.black
-            
-        } else {
-            questionField.text = "Sorry, wrong answer!"
-            sender.backgroundColor = UIColor(red: 87/255, green: 0, blue: 0, alpha: 1.0)
-            sender.tintColor = UIColor.black
-            
-            switch selectedQuestionDict["Correct"]{
-            case "1":
-                mark(correctAnswerButton: answer1Button)
-            case "2":
-                mark(correctAnswerButton: answer2Button)
-            case "3":
-                mark(correctAnswerButton: answer3Button)
-            case "4":
-                mark(correctAnswerButton: answer4Button)
-            default:
-                break
-            }
- 
+        loadGameStartSound()
+        //playGameStartSound()
+        
+        startContainerStackView.isHidden = true
+        gameContainerStackView.isHidden = false
+        
+        if timerSwitch.isOn{
+            startTimer()
+            // TODO
         }
-
-        // Go manually with nextQuestionButton
-        //loadNextRound(delay: 2)
-
+        
+        
+        displayQuestion()
+        
+        
     }
     
+    
+    @IBAction func pressAnswerButton(_ sender: UIButton) {
+        checkGivenAnswer(sender)
+    }
     
     @IBAction func newxtQuestion(_ sender: Any) {
         nextRound()
@@ -181,7 +191,7 @@ class ViewController: UIViewController {
         nextRound()
     }
     
-    
+    // MARK: Helper functions
     // Source:
     func animateButton(_ buttonToAnimate: UIView){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
@@ -212,7 +222,119 @@ class ViewController: UIViewController {
         correctAnswerButton.tintColor = UIColor.black
         animateButton(correctAnswerButton)
     }
-
     
+    func reset(answerButtons: UIView...){
+        for view in answerButtons{
+            view.backgroundColor = UIColor(red: 239/255, green: 121/255, blue: 48/255, alpha: 1.0)
+            view.tintColor = UIColor.white
+        }
+        
+          enableDisableButtons(buttons: answer1Button, answer2Button, answer3Button, answer4Button, toEnable: true)
+    }
+    
+    // Enables or disables an amount of UIButtons
+    func enableDisableButtons(buttons: UIButton..., toEnable: Bool){
+        for button in buttons{
+            if toEnable == true{
+                button.isEnabled = true
+            } else{
+                button.isEnabled = false
+            }
+        }
+    }
+    
+    func checkGivenAnswer(_ sender: UIButton){
+        
+        // Stop timer
+        timer?.invalidate()
+        
+        //let selectedQuestionDict = questions[indexOfSelectedQuestion]
+        let selectedQuestionDict = questions[questionsAsked]
+        
+        print("Question: \(selectedQuestionDict["Question"]!) sender.tag: \(sender.tag) question[Correct]: \(selectedQuestionDict["Correct"]!) QuestionAsked: \(questionsAsked)")
+        
+        if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
+            correctQuestions += 1
+            questionField.text = "Correct!"
+            sender.backgroundColor = UIColor(red: 0, green: 87/255, blue: 0, alpha: 1.0)
+            sender.tintColor = UIColor.black
+            
+        } else {
+            questionField.text = "Sorry, wrong answer!"
+            sender.backgroundColor = UIColor(red: 87/255, green: 0, blue: 0, alpha: 1.0)
+            sender.tintColor = UIColor.black
+            
+            switch selectedQuestionDict["Correct"]{
+            case "1":
+                mark(correctAnswerButton: answer1Button)
+            case "2":
+                mark(correctAnswerButton: answer2Button)
+            case "3":
+                mark(correctAnswerButton: answer3Button)
+            case "4":
+                mark(correctAnswerButton: answer4Button)
+            default:
+                break
+            }
+        }
+        
+        // Increment the questions asked counter
+        questionsAsked += 1
+        
+    }
+    
+    func updateUIWhenTimeOver(){
+        
+        let selectedQuestionDict = questions[questionsAsked]
+        let correctAnswerNumber = Int(selectedQuestionDict["Correct"]!)
+        
+        questionField.text = "Sorry, time over!"
+        
+        switch correctAnswerNumber {
+        case 1:
+            mark(correctAnswerButton: answer1Button)
+            
+        case 2:
+            mark(correctAnswerButton: answer2Button)
+        case 3:
+            mark(correctAnswerButton: answer3Button)
+        case 4:
+            mark(correctAnswerButton: answer4Button)
+            
+
+        default:
+            break
+        }
+        
+        enableDisableButtons(buttons: answer1Button, answer2Button, answer3Button, answer4Button, toEnable: false)
+       
+        
+        // Increment the questions asked counter
+        questionsAsked += 1
+    }
+    
+    
+    func startTimer(){
+        
+        var time = 0;
+        let maxTime = 15
+        var timeLabelText = maxTime
+        self.timerLabel.text = String(timeLabelText)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
+            time += 1
+            timeLabelText -= 1
+            self.timerLabel.text = String(timeLabelText)
+            
+            if time == maxTime{
+                //self.timerLabel.text = String(timeLabelText)
+                timer.invalidate()
+                self.updateUIWhenTimeOver()
+            }
+            
+        })
+
+    }
+
 }
 
