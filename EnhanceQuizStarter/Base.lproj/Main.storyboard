@@ -18,14 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="flq-Lw-96e" userLabel="Answers">
-                                <rect key="frame" x="20" y="258" width="374" height="380"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="flq-Lw-96e" userLabel="Answers">
+                                <rect key="frame" x="20" y="313" width="374" height="270"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSn-ih-qRR" userLabel="Answer 1 Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
                                         <color key="backgroundColor" red="0.68627450980392157" green="0.75294117647058822" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="90g-Ba-gAh"/>
+                                            <constraint firstAttribute="height" priority="750" constant="60" id="90g-Ba-gAh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,10 +35,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYh-2d-v8I" userLabel="Answer 2 Button">
-                                        <rect key="frame" x="0.0" y="100" width="374" height="80"/>
+                                        <rect key="frame" x="0.0" y="70" width="374" height="60"/>
                                         <color key="backgroundColor" red="0.68627450980392157" green="0.75294117647058822" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="QPw-Ic-gzt"/>
+                                            <constraint firstAttribute="height" priority="750" constant="60" id="QPw-Ic-gzt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -48,10 +48,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4C-bg-A4X" userLabel="Answer 3 Button">
-                                        <rect key="frame" x="0.0" y="200" width="374" height="80"/>
+                                        <rect key="frame" x="0.0" y="140" width="374" height="60"/>
                                         <color key="backgroundColor" red="0.68627450980000004" green="0.75294117650000003" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="nIl-vg-is6"/>
+                                            <constraint firstAttribute="height" priority="750" constant="60" id="nIl-vg-is6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,10 +61,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAL-gk-o3B" userLabel="Answer 4 Button">
-                                        <rect key="frame" x="0.0" y="300" width="374" height="80"/>
+                                        <rect key="frame" x="0.0" y="210" width="374" height="60"/>
                                         <color key="backgroundColor" red="0.68627450980392157" green="0.75294117647058822" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="4M9-ZV-mae"/>
+                                            <constraint firstAttribute="height" priority="750" constant="60" id="4M9-ZV-mae"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,10 +88,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
-                                <rect key="frame" x="20" y="762" width="374" height="80"/>
+                                <rect key="frame" x="20" y="782" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.035294117647058823" green="0.51764705882352935" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="kpq-ER-IK0"/>
+                                    <constraint firstAttribute="height" constant="60" id="kpq-ER-IK0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -101,10 +101,10 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-1C-ga6" userLabel="Next Question Button">
-                                <rect key="frame" x="20" y="762" width="374" height="80"/>
+                                <rect key="frame" x="20" y="782" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ysf-E3-YME"/>
+                                    <constraint firstAttribute="height" constant="60" id="ysf-E3-YME"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -144,7 +144,6 @@
                         <color key="backgroundColor" red="0.12941176470588234" green="0.14117647058823529" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dCF-BL-dDa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7V9-LV-Ifk"/>
-                            <constraint firstItem="flq-Lw-96e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HNg-mh-Mkl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w1Q-1C-ga6" secondAttribute="trailing" constant="20" id="Lw8-oc-1ws"/>
                             <constraint firstItem="eic-Nx-foS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="O7J-hj-aZm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eic-Nx-foS" secondAttribute="trailing" constant="20" id="OSj-AC-NRT"/>
@@ -158,6 +157,7 @@
                             <constraint firstItem="Vzx-mG-C1o" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eg4-hs-FDC"/>
                             <constraint firstItem="64Q-Wr-5NF" firstAttribute="top" secondItem="Vzx-mG-C1o" secondAttribute="bottom" constant="40" id="gQO-y5-F8I"/>
                             <constraint firstItem="cKO-PZ-c9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="gS2-ws-V8A"/>
+                            <constraint firstItem="flq-Lw-96e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ggP-eW-0TB"/>
                             <constraint firstItem="Vzx-mG-C1o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jRg-hT-Gnp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cKO-PZ-c9o" secondAttribute="trailing" constant="20" id="mLn-gv-7h8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eic-Nx-foS" secondAttribute="bottom" constant="20" id="ohR-vS-1GB"/>

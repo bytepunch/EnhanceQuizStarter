@@ -5,11 +5,6 @@
 //  Created by Pasan Premaratne on 3/12/18.
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
-// App icon lent from http://quizatclass.com/
-
-
-
-
 
 import UIKit
 import GameKit
@@ -20,7 +15,7 @@ import AVFoundation
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    var questionsPerRound = 4
+    var questionsPerRound = 0
     var questionsAsked = 0
     var correctQuestions = 0
     var indexOfSelectedQuestion = 0
@@ -57,6 +52,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Load questions from data model
         questions = questionProvider.provideRandomizedQuestions()
        
         // Rounded corners for all buttons
@@ -153,7 +149,7 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
+    // Start button pressed. The quiz will start.
     @IBAction func pressStart(_ sender: UIButton) {
         playSound(soundName: "GameSound.wav")
         
@@ -166,12 +162,11 @@ class ViewController: UIViewController {
 
         if timerSwitch.isOn{
             startTimer()
-            // TODO
         }
         displayQuestion()
     }
     
-    
+    // Anweser button pressed calls function which checks if answer is correct
     @IBAction func pressAnswerButton(_ sender: UIButton) {
         checkGivenAnswer(sender)
     }
@@ -250,7 +245,7 @@ class ViewController: UIViewController {
         //let selectedQuestionDict = questions[indexOfSelectedQuestion]
         let selectedQuestionDict = questions[questionsAsked]
         
-        print("Question: \(selectedQuestionDict["Question"]!) sender.tag: \(sender.tag) question[Correct]: \(selectedQuestionDict["Correct"]!) QuestionAsked: \(questionsAsked)")
+        //print("Question: \(selectedQuestionDict["Question"]!) sender.tag: \(sender.tag) question[Correct]: \(selectedQuestionDict["Correct"]!) QuestionAsked: \(questionsAsked)")
         
         if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
             playSound(soundName: "Applause.wav")
