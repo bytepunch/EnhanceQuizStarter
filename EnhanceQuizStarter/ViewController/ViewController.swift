@@ -113,6 +113,7 @@ class ViewController: UIViewController {
         }
         hide(views: playAgainButton)
         
+        
         nextQuestionButton.isEnabled = false
         
     }
@@ -120,7 +121,7 @@ class ViewController: UIViewController {
     // Displays the score at end screen
     func displayScore() {
         // Hide the answer Button
-        hide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
+        hide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton, timerLabel)
 
         // Display play again button
         unHide(views: playAgainButton)
@@ -132,13 +133,13 @@ class ViewController: UIViewController {
         }
     }
     
+    // Checks
     func nextRound() {
         if questionsAsked == questionsPerRound {
             // Game is over
             displayScore()
         } else {
             // Continue game
-            
             if timerSwitch.isOn{
                 startTimer()
             }
@@ -159,6 +160,7 @@ class ViewController: UIViewController {
         unHide(views: timerLabel, answersStackView, nextQuestionButton, timerLabel, questionField)
 
         if timerSwitch.isOn{
+            unHide(views: timerLabel)
             startTimer()
         }
         displayQuestion()
