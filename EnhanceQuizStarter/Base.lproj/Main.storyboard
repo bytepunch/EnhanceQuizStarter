@@ -18,148 +18,147 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DcB-Mi-rqI" userLabel="Start">
-                                <rect key="frame" x="152" y="348" width="101" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="flq-Lw-96e" userLabel="Answers">
+                                <rect key="frame" x="20" y="258" width="374" height="380"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzx-mG-C1o">
-                                        <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
-                                        <state key="normal" title="Start"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSn-ih-qRR" userLabel="Answer 1 Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                                        <color key="backgroundColor" red="0.68627450980392157" green="0.75294117647058822" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="90g-Ba-gAh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Answer 1"/>
                                         <connections>
-                                            <action selector="pressStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9tz-ve-TMr"/>
+                                            <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5J-f0-fjP"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="64Q-Wr-5NF" userLabel="Timer">
-                                        <rect key="frame" x="0.0" y="30" width="101" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URt-8K-Ixo">
-                                                <rect key="frame" x="0.0" y="0.0" width="44" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2l-61-Dyd">
-                                                <rect key="frame" x="52" y="0.0" width="51" height="31"/>
-                                                <color key="onTintColor" red="0.93725490199999995" green="0.47450980390000003" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYh-2d-v8I" userLabel="Answer 2 Button">
+                                        <rect key="frame" x="0.0" y="100" width="374" height="80"/>
+                                        <color key="backgroundColor" red="0.68627450980392157" green="0.75294117647058822" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="QPw-Ic-gzt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Answer 2"/>
+                                        <connections>
+                                            <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hqn-Jc-8a0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4C-bg-A4X" userLabel="Answer 3 Button">
+                                        <rect key="frame" x="0.0" y="200" width="374" height="80"/>
+                                        <color key="backgroundColor" red="0.68627450980000004" green="0.75294117650000003" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="nIl-vg-is6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Answer 3"/>
+                                        <connections>
+                                            <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HCD-Ht-xK7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAL-gk-o3B" userLabel="Answer 4 Button">
+                                        <rect key="frame" x="0.0" y="300" width="374" height="80"/>
+                                        <color key="backgroundColor" red="0.68627450980392157" green="0.75294117647058822" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="4M9-ZV-mae"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Answer 4"/>
+                                        <connections>
+                                            <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLA-kG-fJt"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="8hR-TT-sdq" userLabel="Container">
-                                <rect key="frame" x="20" y="64" width="374" height="778"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKO-PZ-c9o" userLabel="TimerLabel">
+                                <rect key="frame" x="20" y="64" width="374" height="0.0"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Question" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-BL-dDa">
+                                <rect key="frame" x="20" y="84" width="374" height="35.666666666666657"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
+                                <rect key="frame" x="20" y="762" width="374" height="80"/>
+                                <color key="backgroundColor" red="0.035294117647058823" green="0.51764705882352935" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="kpq-ER-IK0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Play Again"/>
+                                <connections>
+                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DS-Q9-gCH"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-1C-ga6" userLabel="Next Question Button">
+                                <rect key="frame" x="20" y="762" width="374" height="80"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="ysf-E3-YME"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Next Question"/>
+                                <connections>
+                                    <action selector="newxtQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baF-iR-oiJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzx-mG-C1o">
+                                <rect key="frame" x="79" y="320" width="256" height="256"/>
+                                <state key="normal" image="play-button"/>
+                                <state key="highlighted" image="play-button_selected"/>
+                                <connections>
+                                    <action selector="pressStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9tz-ve-TMr"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="64Q-Wr-5NF" userLabel="Timer">
+                                <rect key="frame" x="20" y="596" width="374" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKO-PZ-c9o" userLabel="TimerLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URt-8K-Ixo">
+                                        <rect key="frame" x="0.0" y="0.0" width="305" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Question" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-BL-dDa">
-                                        <rect key="frame" x="0.0" y="80.333333333333343" width="374" height="35.666666666666657"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="flq-Lw-96e" userLabel="Answers">
-                                        <rect key="frame" x="0.0" y="176" width="374" height="380"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSn-ih-qRR" userLabel="Answer 1 Button">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="90g-Ba-gAh"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Answer 1"/>
-                                                <connections>
-                                                    <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5J-f0-fjP"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYh-2d-v8I" userLabel="Answer 2 Button">
-                                                <rect key="frame" x="0.0" y="100" width="374" height="80"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="QPw-Ic-gzt"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Answer 2"/>
-                                                <connections>
-                                                    <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hqn-Jc-8a0"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4C-bg-A4X" userLabel="Answer 3 Button">
-                                                <rect key="frame" x="0.0" y="200" width="374" height="80"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="nIl-vg-is6"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Answer 3"/>
-                                                <connections>
-                                                    <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HCD-Ht-xK7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAL-gk-o3B" userLabel="Answer 4 Button">
-                                                <rect key="frame" x="0.0" y="300" width="374" height="80"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="4M9-ZV-mae"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Answer 4"/>
-                                                <connections>
-                                                    <action selector="pressAnswerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLA-kG-fJt"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="auZ-X3-dFK" userLabel="Buttons">
-                                        <rect key="frame" x="0.0" y="616" width="374" height="162"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="82"/>
-                                                <color key="backgroundColor" red="0.035294117647058823" green="0.51764705882352935" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Play Again"/>
-                                                <connections>
-                                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DS-Q9-gCH"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-1C-ga6" userLabel="Next Question Button">
-                                                <rect key="frame" x="0.0" y="82" width="374" height="80"/>
-                                                <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="o7R-Bs-kgg"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Next Question"/>
-                                                <connections>
-                                                    <action selector="newxtQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baF-iR-oiJ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a2l-61-Dyd">
+                                        <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.93725490199999995" green="0.47450980390000003" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </switch>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="dCF-BL-dDa" firstAttribute="top" secondItem="cKO-PZ-c9o" secondAttribute="bottom" constant="60" id="Vbp-bD-f2O"/>
-                                    <constraint firstAttribute="trailing" secondItem="cKO-PZ-c9o" secondAttribute="trailing" id="bEa-f6-5J6"/>
-                                    <constraint firstItem="cKO-PZ-c9o" firstAttribute="leading" secondItem="8hR-TT-sdq" secondAttribute="leading" id="vbn-4u-Stj"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.14117647058823529" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8hR-TT-sdq" secondAttribute="bottom" constant="20" id="3dG-Nl-nyW"/>
-                            <constraint firstItem="8hR-TT-sdq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="JSz-7l-1Km"/>
-                            <constraint firstItem="8hR-TT-sdq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="kTa-Cd-avd"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8hR-TT-sdq" secondAttribute="trailing" constant="20" id="tkk-Or-1zD"/>
+                            <constraint firstItem="dCF-BL-dDa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7V9-LV-Ifk"/>
+                            <constraint firstItem="64Q-Wr-5NF" firstAttribute="top" secondItem="Vzx-mG-C1o" secondAttribute="bottom" constant="20" id="CdZ-0j-lFT"/>
+                            <constraint firstItem="64Q-Wr-5NF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FX7-Fl-c0p"/>
+                            <constraint firstItem="flq-Lw-96e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HNg-mh-Mkl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w1Q-1C-ga6" secondAttribute="trailing" constant="20" id="Lw8-oc-1ws"/>
+                            <constraint firstItem="eic-Nx-foS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="O7J-hj-aZm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eic-Nx-foS" secondAttribute="trailing" constant="20" id="OSj-AC-NRT"/>
+                            <constraint firstItem="64Q-Wr-5NF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Snh-fh-uQa"/>
+                            <constraint firstItem="flq-Lw-96e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XDS-sA-ui3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="flq-Lw-96e" secondAttribute="trailing" constant="20" id="YIT-Op-ziD"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="w1Q-1C-ga6" secondAttribute="bottom" constant="20" id="YhU-Mi-L7C"/>
+                            <constraint firstItem="cKO-PZ-c9o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="a7C-S8-K4K"/>
+                            <constraint firstItem="w1Q-1C-ga6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dnd-4H-8dj"/>
+                            <constraint firstItem="dCF-BL-dDa" firstAttribute="top" secondItem="cKO-PZ-c9o" secondAttribute="bottom" constant="20" id="du1-v3-ujc"/>
+                            <constraint firstItem="Vzx-mG-C1o" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eg4-hs-FDC"/>
+                            <constraint firstItem="cKO-PZ-c9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="gS2-ws-V8A"/>
+                            <constraint firstItem="Vzx-mG-C1o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jRg-hT-Gnp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cKO-PZ-c9o" secondAttribute="trailing" constant="20" id="mLn-gv-7h8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eic-Nx-foS" secondAttribute="bottom" constant="20" id="ohR-vS-1GB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dCF-BL-dDa" secondAttribute="trailing" constant="20" id="tKX-tE-x80"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -168,12 +167,13 @@
                         <outlet property="answer2Button" destination="qYh-2d-v8I" id="WJN-x7-R7o"/>
                         <outlet property="answer3Button" destination="X4C-bg-A4X" id="9oo-eu-1LB"/>
                         <outlet property="answer4Button" destination="zAL-gk-o3B" id="F7E-yb-Acg"/>
-                        <outlet property="gameContainerStackView" destination="8hR-TT-sdq" id="Lai-aW-NNE"/>
+                        <outlet property="answersStackView" destination="flq-Lw-96e" id="GvB-Vk-8TL"/>
                         <outlet property="nextQuestionButton" destination="w1Q-1C-ga6" id="5dP-gI-kLe"/>
                         <outlet property="playAgainButton" destination="eic-Nx-foS" id="fZz-Md-Y70"/>
                         <outlet property="questionField" destination="dCF-BL-dDa" id="HIQ-UX-KNe"/>
-                        <outlet property="startContainerStackView" destination="DcB-Mi-rqI" id="Eoz-2m-sHO"/>
+                        <outlet property="startButton" destination="Vzx-mG-C1o" id="ahq-qG-rAO"/>
                         <outlet property="timerLabel" destination="cKO-PZ-c9o" id="QNq-Mm-qvX"/>
+                        <outlet property="timerStackView" destination="64Q-Wr-5NF" id="Q5Z-jQ-PuQ"/>
                         <outlet property="timerSwitch" destination="a2l-61-Dyd" id="5mc-Wo-Lhm"/>
                     </connections>
                 </viewController>
@@ -182,4 +182,8 @@
             <point key="canvasLocation" x="37.681159420289859" y="18.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play-button" width="256" height="256"/>
+        <image name="play-button_selected" width="256" height="256"/>
+    </resources>
 </document>
