@@ -14,6 +14,8 @@
 import UIKit
 import GameKit
 import AudioToolbox
+import AVFoundation
+
 
 class ViewController: UIViewController {
     
@@ -34,7 +36,14 @@ class ViewController: UIViewController {
     let questionProvider = QuestionProvider()
     var questions: [[String:String]] = []
     
-    var gameSound: SystemSoundID = 0
+    var startSound: SystemSoundID = 0
+    var tickSound: SystemSoundID = 1
+    var applauseSound: SystemSoundID = 2
+    var correctSound: SystemSoundID = 3
+    var failSound: SystemSoundID = 4
+    
+    // Sounds with AVFoundation
+    var audioPlayer: AVAudioPlayer? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var questionField: UILabel!
@@ -81,15 +90,33 @@ class ViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func loadGameStartSound() {
-        let path = Bundle.main.path(forResource: "GameSound", ofType: "wav")
+    func loadSound(soundName: String, soundID: SystemSoundID) {
+        var sound = soundID
+        let path = Bundle.main.path(forResource: soundName, ofType: "wav")
         let soundUrl = URL(fileURLWithPath: path!)
-        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &gameSound)
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &sound)
     }
     
-    func playGameStartSound() {
-        AudioServicesPlaySystemSound(gameSound)
+    func playSound(soundName: String) {
+        
+        let path = Bundle.main.path(forResource: soundName, ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+            self.audioPlayer?.play()
+        } catch {
+            print("Couldn't load file")
+        }
+ 
+        //AudioServicesPlaySystemSound(soundID)
     }
+    
+    func stopSound(){
+        self.audioPlayer?.stop()
+        //AudioServicesDisposeSystemSoundID(soundID)
+    }
+    
     
     func displayQuestion() {
         
@@ -168,8 +195,8 @@ class ViewController: UIViewController {
     @IBAction func pressStart(_ sender: UIButton) {
         
         
-        loadGameStartSound()
-        //playGameStartSound()
+        //loadSound(soundName: "GameSound", soundID: startSound)
+        playSound(soundName: "GameSound.wav")
         
         // Hide
         startButton.isHidden = true
@@ -196,6 +223,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newxtQuestion(_ sender: Any) {
+        stopSound()
         nextRound()
     }
     
@@ -272,12 +300,21 @@ class ViewController: UIViewController {
         print("Question: \(selectedQuestionDict["Question"]!) sender.tag: \(sender.tag) question[Correct]: \(selectedQuestionDict["Correct"]!) QuestionAsked: \(questionsAsked)")
         
         if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
+            
+            //loadSound(soundName: "Applause", soundID: applauseSound)
+            playSound(soundName: "Applause.wav")
+            
             correctQuestions += 1
             questionField.text = "Correct!"
             sender.backgroundColor = greenColor
             sender.tintColor = UIColor.black
             
+            
         } else {
+            
+            //loadSound(soundName: "FailBuzzer", soundID: failSound)
+            playSound(soundName: "FailBuzzer.wav")
+            
             questionField.text = "Sorry, wrong answer!"
             sender.backgroundColor = redColor
             sender.tintColor = UIColor.black
@@ -305,6 +342,10 @@ class ViewController: UIViewController {
     
     func updateUIWhenTimeOver(){
         let selectedQuestionDict = questions[questionsAsked]
+        
+        //loadSound(soundName: "FailBuzzer", soundID: failSound)
+        playSound(soundName: "FailBuzzer.wav")
+        
         let correctAnswerNumber = Int(selectedQuestionDict["Correct"]!)
         questionField.text = "Sorry, time over!"
         switch correctAnswerNumber {
@@ -340,13 +381,28 @@ class ViewController: UIViewController {
             timeLabelText -= 1
             self.timerLabel.text = String(timeLabelText)
             
-            if timeLabelText <= 5{
+            if timeLabelText == 5{
                 self.timerLabel.textColor = self.redColor
+                
+                let path = Bundle.main.path(forResource: "Click.wav", ofType:nil)!
+                let url = URL(fileURLWithPath: path)
+                
+                do {
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+                    self.audioPlayer?.play()
+                } catch {
+                    print("Couldn't load file!")
+                }
+                
+                //self.loadSound(soundName: "Click", soundID: self.tickSound )
+                //self.playSound(soundID: self.tickSound)
             }
             
             if time == self.maxTime{
                 timer.invalidate()
                 self.updateUIWhenTimeOver()
+                //self.stopSound()
+                //self.stopSound(soundID: self.tickSound)
             }
             
         })

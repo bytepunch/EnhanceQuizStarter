@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		546B541723056ED50088ACE1 /* FailBuzzer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 546B541623056ED50088ACE1 /* FailBuzzer.wav */; };
+		546B541A23056FD30088ACE1 /* Applause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 546B541923056FD30088ACE1 /* Applause.wav */; };
+		54A7FDA723057110001D6BD8 /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A7FDA62305710F001D6BD8 /* Click.wav */; };
 		972A72B12056F06C0059EF4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A72B02056F06C0059EF4A /* AppDelegate.swift */; };
 		972A72B32056F06C0059EF4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972A72B22056F06C0059EF4A /* ViewController.swift */; };
 		972A72B62056F06C0059EF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972A72B42056F06C0059EF4A /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		546B541623056ED50088ACE1 /* FailBuzzer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FailBuzzer.wav; sourceTree = "<group>"; };
+		546B541923056FD30088ACE1 /* Applause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Applause.wav; sourceTree = "<group>"; };
+		54A7FDA62305710F001D6BD8 /* Click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Click.wav; sourceTree = "<group>"; };
 		972A72AD2056F06C0059EF4A /* EnhanceQuizStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnhanceQuizStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972A72B02056F06C0059EF4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		972A72B22056F06C0059EF4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +45,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		546B541823056EDD0088ACE1 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				54A7FDA62305710F001D6BD8 /* Click.wav */,
+				972A72C22056F0E40059EF4A /* GameSound.wav */,
+				546B541623056ED50088ACE1 /* FailBuzzer.wav */,
+				546B541923056FD30088ACE1 /* Applause.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		972A72A42056F06C0059EF4A = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +82,7 @@
 				972A72B72056F06C0059EF4A /* Assets.xcassets */,
 				972A72B92056F06C0059EF4A /* LaunchScreen.storyboard */,
 				972A72BC2056F06C0059EF4A /* Info.plist */,
-				972A72C22056F0E40059EF4A /* GameSound.wav */,
+				546B541823056EDD0088ACE1 /* Sounds */,
 			);
 			path = EnhanceQuizStarter;
 			sourceTree = "<group>";
@@ -131,7 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				972A72C32056F0E40059EF4A /* GameSound.wav in Resources */,
+				546B541A23056FD30088ACE1 /* Applause.wav in Resources */,
+				546B541723056ED50088ACE1 /* FailBuzzer.wav in Resources */,
 				972A72BB2056F06C0059EF4A /* LaunchScreen.storyboard in Resources */,
+				54A7FDA723057110001D6BD8 /* Click.wav in Resources */,
 				972A72B82056F06C0059EF4A /* Assets.xcassets in Resources */,
 				972A72B62056F06C0059EF4A /* Main.storyboard in Resources */,
 			);
