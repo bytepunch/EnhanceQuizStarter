@@ -56,6 +56,31 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		5482B7DB2305893500E7FAD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C01FE84B229EF5DF00D0D5C8 /* QuestionProvider.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5482B7DC2305894500E7FAD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				972A72B42056F06C0059EF4A /* Main.storyboard */,
+				972A72B92056F06C0059EF4A /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5482B7DD2305896400E7FAD4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				972A72B22056F06C0059EF4A /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		972A72A42056F06C0059EF4A = {
 			isa = PBXGroup;
 			children = (
@@ -75,12 +100,11 @@
 		972A72AF2056F06C0059EF4A /* EnhanceQuizStarter */ = {
 			isa = PBXGroup;
 			children = (
+				5482B7DD2305896400E7FAD4 /* ViewController */,
+				5482B7DC2305894500E7FAD4 /* View */,
+				5482B7DB2305893500E7FAD4 /* Model */,
 				972A72B02056F06C0059EF4A /* AppDelegate.swift */,
-				972A72B22056F06C0059EF4A /* ViewController.swift */,
-				C01FE84B229EF5DF00D0D5C8 /* QuestionProvider.swift */,
-				972A72B42056F06C0059EF4A /* Main.storyboard */,
 				972A72B72056F06C0059EF4A /* Assets.xcassets */,
-				972A72B92056F06C0059EF4A /* LaunchScreen.storyboard */,
 				972A72BC2056F06C0059EF4A /* Info.plist */,
 				546B541823056EDD0088ACE1 /* Sounds */,
 			);
