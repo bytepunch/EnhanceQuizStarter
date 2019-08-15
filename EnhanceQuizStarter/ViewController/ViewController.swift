@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     // Question provider
     let questionProvider = QuestionProvider()
-    var questions: [[String:String]] = []
+    var questions = [Question]()
     
     // Sound with AVFoundation
     var audioPlayer: AVAudioPlayer? = nil
@@ -53,6 +53,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Load questions from data model
+        questionProvider.addQuestions()
         questions = questionProvider.provideRandomizedQuestions()
        
         // Rounded corners for all buttons
@@ -61,8 +62,6 @@ class ViewController: UIViewController {
             button?.layer.cornerRadius = CGFloat(cornerRadius)
             button?.clipsToBounds = true
         }
-        
-     
     }
     
     // MARK: - Helpers
@@ -99,15 +98,15 @@ class ViewController: UIViewController {
         //indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
         //let questionDictionary = questionProvider.questions[indexOfSelectedQuestion]
         let questionDictionary = questions[questionsAsked]
-        questionField.text = questionDictionary["Question"]
+        questionField.text = questionDictionary.problem
         
-        answer1Button.setTitle(questionDictionary["Answer1"], for: .normal)
-        answer2Button.setTitle(questionDictionary["Answer2"], for: .normal)
-        answer3Button.setTitle(questionDictionary["Answer3"], for: .normal)
+        answer1Button.setTitle(questionDictionary.answer1, for: .normal)
+        answer2Button.setTitle(questionDictionary.answer2, for: .normal)
+        answer3Button.setTitle(questionDictionary.answer3, for: .normal)
         
         // In case show the 4th button
-        if questionDictionary["Choices"] == "4"{
-            answer4Button.setTitle(questionDictionary["Answer4"], for: .normal)
+        if questionDictionary.choices == 4{
+            answer4Button.setTitle(questionDictionary.answer4, for: .normal)
             unHide(views: answer4Button)
         } else{
             hide(views: answer4Button)
@@ -241,9 +240,7 @@ class ViewController: UIViewController {
         //let selectedQuestionDict = questions[indexOfSelectedQuestion]
         let selectedQuestionDict = questions[questionsAsked]
         
-        //print("Question: \(selectedQuestionDict["Question"]!) sender.tag: \(sender.tag) question[Correct]: \(selectedQuestionDict["Correct"]!) QuestionAsked: \(questionsAsked)")
-        
-        if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
+        if (sender.tag == selectedQuestionDict.correctAnswer) {
             playSound(soundName: "Applause.wav")
             
             correctQuestions += 1
@@ -259,14 +256,14 @@ class ViewController: UIViewController {
             sender.backgroundColor = redColor
             sender.tintColor = UIColor.black
             
-            switch selectedQuestionDict["Correct"]{
-            case "1":
+            switch selectedQuestionDict.correctAnswer{
+            case 1:
                 mark(correctAnswerButton: answer1Button)
-            case "2":
+            case 2:
                 mark(correctAnswerButton: answer2Button)
-            case "3":
+            case 3:
                 mark(correctAnswerButton: answer3Button)
-            case "4":
+            case 4:
                 mark(correctAnswerButton: answer4Button)
             default:
                 break
@@ -286,7 +283,7 @@ class ViewController: UIViewController {
         //loadSound(soundName: "FailBuzzer", soundID: failSound)
         playSound(soundName: "FailBuzzer.wav")
         
-        let correctAnswerNumber = Int(selectedQuestionDict["Correct"]!)
+        let correctAnswerNumber = selectedQuestionDict.correctAnswer
         questionField.text = "Sorry, time over!"
         switch correctAnswerNumber {
         case 1:
