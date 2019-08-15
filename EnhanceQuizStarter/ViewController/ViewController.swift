@@ -177,8 +177,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playAgain(_ sender: UIButton) {
+        
         // Show the answer buttons
         unHide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
+        
+        // Show timer label when lighning mode is on
+        if timerSwitch.isOn{
+            unHide(views: timerLabel)
+            
+        }
         questions = questionProvider.provideRandomizedQuestions()
         questionsAsked = 0
         correctQuestions = 0
