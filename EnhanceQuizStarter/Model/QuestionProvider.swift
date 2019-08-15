@@ -20,7 +20,7 @@ class QuestionProvider{
     let question9 = Question(problem: "Who lived at 221B, Baker Street, London?", answer1: "Nero Wolfe", answer2: "Sherlock Holmes", answer3: "Agatha Christie", answer4: "Arthur Conan Doyle", correctAnswer: 2, choices: 4)
     let question10 = Question(problem: "When did the American Civil War end?", answer1: "1794", answer2: "1865", answer3: "1903", answer4: "Arthur Conan Doyle", correctAnswer: 2, choices: 3)
     let question11 = Question(problem: "Who said E = mc2", answer1: "Einstein", answer2: "Hawking", answer3: "Sagan", answer4: "Bor", correctAnswer: 1, choices: 4)
-    let question12 = Question(problem: "Who was the main actor in “Cocktail”?", answer1: "Tom Hanks", answer2: "Brad Pitt", answer3: "Mickey Rourke", answer4: "Tom Crouse", correctAnswer: 4, choices: 4)
+    let question12 = Question(problem: "Who was the main actor in “Cocktail”?", answer1: "Tom Hanks", answer2: "Brad Pitt", answer3: "Mickey Rourke", answer4: "Tom Cruise", correctAnswer: 4, choices: 4)
     
     
     var questions = [Question]()
