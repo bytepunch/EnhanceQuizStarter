@@ -117,15 +117,19 @@ class ViewController: UIViewController {
         
     }
     
+    // Displays the score at end screen
     func displayScore() {
-        
         // Hide the answer Button
         hide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
 
         // Display play again button
         unHide(views: playAgainButton)
         
-        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        if correctQuestions <= questionsPerRound/2{
+            questionField.text = "Oooops!\nYou got only \(correctQuestions) out of \(questionsPerRound) correct!"
+        } else{
+           questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        }
     }
     
     func nextRound() {
@@ -138,7 +142,6 @@ class ViewController: UIViewController {
             if timerSwitch.isOn{
                 startTimer()
             }
-            
             displayQuestion()
         }
     }
