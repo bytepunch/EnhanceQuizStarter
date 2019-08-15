@@ -26,12 +26,12 @@ struct QuestionProvider{
         ["Question": "What artist said he would eat his wife when she died?", "Answer1": "van Gogh", "Answer2": "Rembrandt", "Answer3": "Dali", "Answer4": "Vermeer", "Correct": "3", "Choices": "4" ],
         ["Question": "Which nail grows fastest?", "Answer1": "middle", "Answer2": "index", "Answer3": "thumb", "Answer4": "pinkie", "Correct": "1", "Choices": "4" ],
         ["Question": "What did the crocodile swallow in Peter Pan?", "Answer1": "Boot", "Answer2": "Spoon", "Answer3": "Alarm clock", "Answer4": "Head", "Correct": "3", "Choices": "4" ],
-        ["Question": "Which German city is famous for the perfume it produces?", "Answer1": "Hamburg", "Answer3": "Berlin", "Answer4": "Cologne", "Correct": "4", "Choices": "3" ],
+        ["Question": "Which German city is famous for the perfume it produces?", "Answer1": "Hamburg", "Answer2": "Berlin", "Answer3": "Cologne", "Correct": "3", "Choices": "3" ],
         ["Question": "What does the roman numeral C represent?", "Answer1": "100", "Answer2": "200", "Answer3": "300", "Answer4": "500", "Correct": "1", "Choices": "4" ],
         ["Question": "Who lived at 221B, Baker Street, London?", "Answer1": "Nero Wolfe", "Answer2": "Sherlock Holmes", "Answer3": "Agatha Christie", "Answer4": "Arthur Conan Doyle", "Correct": "2", "Choices": "4" ],
         ["Question": "When did the American Civil War end?", "Answer1": "1794", "Answer2": "1865", "Answer3": "1903", "Correct": "2", "Choices": "3" ],
         ["Question": "Who said E = mc2?", "Answer1": "Einstein", "Answer2": "Hawking", "Answer3": "Sagan", "Answer4": "Bor", "Correct": "1", "Choices": "4" ],
-        ["Question": "Who as the main actor in “Cocktail”?", "Answer1": "Tom Hanks", "Answer2": "Brad Pitt", "Answer3": "Mickey Rourke", "Answer4": "Tom Cruise", "Correct": "4", "Choices": "4" ]
+        ["Question": "Who was the main actor in “Cocktail”?", "Answer1": "Tom Hanks", "Answer2": "Brad Pitt", "Answer3": "Mickey Rourke", "Answer4": "Tom Cruise", "Correct": "4", "Choices": "4" ]
     ]
     
     func provideRandomizedQuestions() -> [[String : String]] {

@@ -15,7 +15,7 @@ import AVFoundation
 class ViewController: UIViewController {
     
     // MARK: - Properties
-    var questionsPerRound = 0
+    var questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
     var indexOfSelectedQuestion = 0
@@ -60,10 +60,6 @@ class ViewController: UIViewController {
         for button in buttons{
             button?.layer.cornerRadius = CGFloat(cornerRadius)
             button?.clipsToBounds = true
-        }
-        
-        if questionsPerRound < questionProvider.provideRandomizedQuestions().count{
-            questionsPerRound = questionProvider.provideRandomizedQuestions().count
         }
         
      
