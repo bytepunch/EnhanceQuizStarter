@@ -36,13 +36,7 @@ class ViewController: UIViewController {
     let questionProvider = QuestionProvider()
     var questions: [[String:String]] = []
     
-    var startSound: SystemSoundID = 0
-    var tickSound: SystemSoundID = 1
-    var applauseSound: SystemSoundID = 2
-    var correctSound: SystemSoundID = 3
-    var failSound: SystemSoundID = 4
-    
-    // Sounds with AVFoundation
+    // Sound with AVFoundation
     var audioPlayer: AVAudioPlayer? = nil
     
     // MARK: - Outlets
@@ -53,33 +47,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var answer3Button: UIButton!
     @IBOutlet weak var answer4Button: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
-    
     @IBOutlet weak var timerSwitch: UISwitch!
-    
     @IBOutlet weak var timerLabel: UILabel!
-    
-    
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var timerStackView: UIStackView!
-    
     @IBOutlet weak var answersStackView: UIStackView!
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         questions = questionProvider.provideRandomizedQuestions()
-        
-        //print(questions)
-        
+       
         // Rounded corners for all buttons
         let buttons = [answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton, playAgainButton]
         for button in buttons{
             button?.layer.cornerRadius = CGFloat(cornerRadius)
             button?.clipsToBounds = true
         }
-        
         
         if questionsPerRound < questionProvider.provideRandomizedQuestions().count{
             questionsPerRound = questionProvider.provideRandomizedQuestions().count
@@ -89,7 +74,6 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    
     func loadSound(soundName: String, soundID: SystemSoundID) {
         var sound = soundID
         let path = Bundle.main.path(forResource: soundName, ofType: "wav")
@@ -108,13 +92,10 @@ class ViewController: UIViewController {
         } catch {
             print("Couldn't load file")
         }
- 
-        //AudioServicesPlaySystemSound(soundID)
     }
     
     func stopSound(){
         self.audioPlayer?.stop()
-        //AudioServicesDisposeSystemSoundID(soundID)
     }
     
     
@@ -122,7 +103,6 @@ class ViewController: UIViewController {
         
         // Reset colors of all buttons
         reset(answerButtons: answer1Button, answer2Button, answer3Button, answer4Button)
-
         
         //indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
         //let questionDictionary = questionProvider.questions[indexOfSelectedQuestion]
@@ -143,8 +123,6 @@ class ViewController: UIViewController {
         hide(views: playAgainButton)
         
         nextQuestionButton.isEnabled = false
-        
-        
         
     }
     
@@ -174,28 +152,9 @@ class ViewController: UIViewController {
         }
     }
     
-    // No longer needed
-    /*
-    func loadNextRound(delay seconds: Int) {
-        // Converts a delay in seconds to nanoseconds as signed 64 bit integer
-        let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
-        // Calculates a time value to execute the method given current time and delay
-        let dispatchTime = DispatchTime.now() + Double(delay) / Double(NSEC_PER_SEC)
-        
-        // Executes the nextRound method at the dispatch time on the main queue
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.nextRound()
-        }
-    }
-    */
-
-    
     // MARK: - Actions
     
     @IBAction func pressStart(_ sender: UIButton) {
-        
-        
-        //loadSound(soundName: "GameSound", soundID: startSound)
         playSound(soundName: "GameSound.wav")
         
         // Hide
@@ -205,16 +164,11 @@ class ViewController: UIViewController {
         // Unhide
         unHide(views: timerLabel, answersStackView, nextQuestionButton, timerLabel, questionField)
 
-        
         if timerSwitch.isOn{
             startTimer()
             // TODO
         }
-        
-        
         displayQuestion()
-        
-        
     }
     
     
@@ -230,7 +184,6 @@ class ViewController: UIViewController {
     @IBAction func playAgain(_ sender: UIButton) {
         // Show the answer buttons
         unHide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
-
         questions = questionProvider.provideRandomizedQuestions()
         questionsAsked = 0
         correctQuestions = 0
@@ -300,8 +253,6 @@ class ViewController: UIViewController {
         print("Question: \(selectedQuestionDict["Question"]!) sender.tag: \(sender.tag) question[Correct]: \(selectedQuestionDict["Correct"]!) QuestionAsked: \(questionsAsked)")
         
         if (sender.tag == Int(selectedQuestionDict["Correct"]!)) {
-            
-            //loadSound(soundName: "Applause", soundID: applauseSound)
             playSound(soundName: "Applause.wav")
             
             correctQuestions += 1
@@ -311,8 +262,6 @@ class ViewController: UIViewController {
             
             
         } else {
-            
-            //loadSound(soundName: "FailBuzzer", soundID: failSound)
             playSound(soundName: "FailBuzzer.wav")
             
             questionField.text = "Sorry, wrong answer!"
@@ -393,18 +342,12 @@ class ViewController: UIViewController {
                 } catch {
                     print("Couldn't load file!")
                 }
-                
-                //self.loadSound(soundName: "Click", soundID: self.tickSound )
-                //self.playSound(soundID: self.tickSound)
             }
             
             if time == self.maxTime{
                 timer.invalidate()
                 self.updateUIWhenTimeOver()
-                //self.stopSound()
-                //self.stopSound(soundID: self.tickSound)
             }
-            
         })
 
     }
