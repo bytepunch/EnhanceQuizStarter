@@ -17,7 +17,7 @@
 		972A72B62056F06C0059EF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972A72B42056F06C0059EF4A /* Main.storyboard */; };
 		972A72B82056F06C0059EF4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 972A72B72056F06C0059EF4A /* Assets.xcassets */; };
 		972A72BB2056F06C0059EF4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972A72B92056F06C0059EF4A /* LaunchScreen.storyboard */; };
-		972A72C32056F0E40059EF4A /* GameSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 972A72C22056F0E40059EF4A /* GameSound.wav */; };
+		972A72C32056F0E40059EF4A /* Start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 972A72C22056F0E40059EF4A /* Start.wav */; };
 		C01FE84C229EF5DF00D0D5C8 /* QuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01FE84B229EF5DF00D0D5C8 /* QuestionProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		972A72B72056F06C0059EF4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		972A72BA2056F06C0059EF4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		972A72BC2056F06C0059EF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		972A72C22056F0E40059EF4A /* GameSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameSound.wav; sourceTree = "<group>"; };
+		972A72C22056F0E40059EF4A /* Start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Start.wav; sourceTree = "<group>"; };
 		C01FE84B229EF5DF00D0D5C8 /* QuestionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				54A7FDA62305710F001D6BD8 /* Click.wav */,
-				972A72C22056F0E40059EF4A /* GameSound.wav */,
+				972A72C22056F0E40059EF4A /* Start.wav */,
 				546B541623056ED50088ACE1 /* FailBuzzer.wav */,
 				546B541923056FD30088ACE1 /* Applause.wav */,
 			);
@@ -177,7 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				972A72C32056F0E40059EF4A /* GameSound.wav in Resources */,
+				972A72C32056F0E40059EF4A /* Start.wav in Resources */,
 				546B541A23056FD30088ACE1 /* Applause.wav in Resources */,
 				546B541723056ED50088ACE1 /* FailBuzzer.wav in Resources */,
 				972A72BB2056F06C0059EF4A /* LaunchScreen.storyboard in Resources */,

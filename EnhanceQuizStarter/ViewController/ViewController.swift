@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     var timer: Timer? = nil
     let maxTime = 15
     
+    // MARK: - SoundManager
+    let soundManager = SoundManager()
+    
     let greenColor = UIColor(red: 0/255, green: 128/255, blue: 0/255, alpha: 1.0)
     let redColor = UIColor(red: 220/255, green: 20/255, blue: 60/255, alpha: 1.0)
     let normalColor = UIColor(red: 175/255, green: 192/255, blue: 205/255, alpha: 1.0)
@@ -32,7 +35,7 @@ class ViewController: UIViewController {
     var questions = [Question]()
     
     // Sound with AVFoundation
-    var audioPlayer: AVAudioPlayer? = nil
+    //var audioPlayer: AVAudioPlayer? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var questionField: UILabel!
@@ -47,7 +50,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var timerStackView: UIStackView!
     @IBOutlet weak var answersStackView: UIStackView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +66,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - Helpers
-    func loadSound(soundName: String, soundID: SystemSoundID) {
-        var sound = soundID
-        let path = Bundle.main.path(forResource: soundName, ofType: "wav")
-        let soundUrl = URL(fileURLWithPath: path!)
-        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &sound)
-    }
-    
+    /*
     func playSound(soundName: String) {
         
         let path = Bundle.main.path(forResource: soundName, ofType:nil)!
@@ -88,6 +83,7 @@ class ViewController: UIViewController {
     func stopSound(){
         self.audioPlayer?.stop()
     }
+   */
     
     
     func displayQuestion() {
@@ -150,7 +146,8 @@ class ViewController: UIViewController {
     // MARK: - Actions
     // Start button pressed. The quiz will start.
     @IBAction func pressStart(_ sender: UIButton) {
-        playSound(soundName: "GameSound.wav")
+        //playSound(soundName: "GameSound.wav")
+        soundManager.play("Start")
         
         // Hide
         startButton.isHidden = true
@@ -172,7 +169,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newxtQuestion(_ sender: Any) {
-        stopSound()
+        //stopSound()
+        soundManager.stop()
         nextRound()
     }
     
@@ -253,7 +251,8 @@ class ViewController: UIViewController {
         let selectedQuestionDict = questions[questionsAsked]
         
         if (sender.tag == selectedQuestionDict.correctAnswer) {
-            playSound(soundName: "Applause.wav")
+            //playSound(soundName: "Applause.wav")
+            soundManager.play("Applause")
             
             correctQuestions += 1
             questionField.text = "Correct!"
@@ -262,7 +261,8 @@ class ViewController: UIViewController {
             
             
         } else {
-            playSound(soundName: "FailBuzzer.wav")
+            //playSound(soundName: "FailBuzzer.wav")
+            soundManager.play("FailBuzzer")
             
             questionField.text = "Sorry, wrong answer!"
             sender.backgroundColor = redColor
@@ -293,7 +293,8 @@ class ViewController: UIViewController {
         let selectedQuestionDict = questions[questionsAsked]
         
         //loadSound(soundName: "FailBuzzer", soundID: failSound)
-        playSound(soundName: "FailBuzzer.wav")
+        //playSound(soundName: "FailBuzzer.wav")
+        soundManager.play("FailBuzzer")
         
         let correctAnswerNumber = selectedQuestionDict.correctAnswer
         questionField.text = "Sorry, time over!"
@@ -333,8 +334,12 @@ class ViewController: UIViewController {
             if timeLabelText == 5{
                 self.timerLabel.textColor = self.redColor
                 
+                self.soundManager.play("Click")
+                
+                /*
                 let path = Bundle.main.path(forResource: "Click.wav", ofType:nil)!
                 let url = URL(fileURLWithPath: path)
+                
                 
                 do {
                     self.audioPlayer = try AVAudioPlayer(contentsOf: url)
@@ -342,6 +347,10 @@ class ViewController: UIViewController {
                 } catch {
                     print("Couldn't load file!")
                 }
+                */
+                
+                
+                
             }
             
             if time == self.maxTime{
