@@ -34,9 +34,6 @@ class ViewController: UIViewController {
     let questionProvider = QuestionProvider()
     var questions = [Question]()
     
-    // Sound with AVFoundation
-    //var audioPlayer: AVAudioPlayer? = nil
-    
     // MARK: - Outlets
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var nextQuestionButton: UIButton!
@@ -66,33 +63,12 @@ class ViewController: UIViewController {
         }
     }
     
-    /*
-    func playSound(soundName: String) {
-        
-        let path = Bundle.main.path(forResource: soundName, ofType:nil)!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-            self.audioPlayer?.play()
-        } catch {
-            print("Couldn't load file")
-        }
-    }
-    
-    func stopSound(){
-        self.audioPlayer?.stop()
-    }
-   */
-    
-    
+    // Displays the questions on screen
     func displayQuestion() {
         
         // Reset colors of all buttons
         reset(answerButtons: answer1Button, answer2Button, answer3Button, answer4Button)
         
-        //indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: questionProvider.questions.count)
-        //let questionDictionary = questionProvider.questions[indexOfSelectedQuestion]
         let questionDictionary = questions[questionsAsked]
         questionField.text = questionDictionary.problem
         
@@ -109,7 +85,6 @@ class ViewController: UIViewController {
         }
         hide(views: playAgainButton)
         
-        
         nextQuestionButton.isEnabled = false
         
     }
@@ -122,6 +97,7 @@ class ViewController: UIViewController {
         // Display play again button
         unHide(views: playAgainButton)
         
+        // Less than the half of questions correct change String
         if correctQuestions <= questionsPerRound/2{
             questionField.text = "Oooops!\nYou got only \(correctQuestions) out of \(questionsPerRound) correct!"
         } else{
@@ -132,9 +108,11 @@ class ViewController: UIViewController {
     // Checks
     func nextRound() {
         if questionsAsked == questionsPerRound {
+            
             // Game is over
             displayScore()
         } else {
+            
             // Continue game
             if timerSwitch.isOn{
                 startTimer()
@@ -146,7 +124,6 @@ class ViewController: UIViewController {
     // MARK: - Actions
     // Start button pressed. The quiz will start.
     @IBAction func pressStart(_ sender: UIButton) {
-        //playSound(soundName: "GameSound.wav")
         soundManager.play("Start")
         
         // Hide
@@ -191,7 +168,7 @@ class ViewController: UIViewController {
     }
     
     // MARK: Helper functions
-    // Source:
+    // Source: StackOverflow
     func animateButton(_ buttonToAnimate: UIView){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 0.8, options: .curveEaseIn,
@@ -247,11 +224,9 @@ class ViewController: UIViewController {
         // Stop timer
         timer?.invalidate()
         
-        //let selectedQuestionDict = questions[indexOfSelectedQuestion]
         let selectedQuestionDict = questions[questionsAsked]
         
         if (sender.tag == selectedQuestionDict.correctAnswer) {
-            //playSound(soundName: "Applause.wav")
             soundManager.play("Applause")
             
             correctQuestions += 1
@@ -261,7 +236,6 @@ class ViewController: UIViewController {
             
             
         } else {
-            //playSound(soundName: "FailBuzzer.wav")
             soundManager.play("FailBuzzer")
             
             questionField.text = "Sorry, wrong answer!"
@@ -291,11 +265,8 @@ class ViewController: UIViewController {
     
     func updateUIWhenTimeOver(){
         let selectedQuestionDict = questions[questionsAsked]
-        
-        //loadSound(soundName: "FailBuzzer", soundID: failSound)
-        //playSound(soundName: "FailBuzzer.wav")
+
         soundManager.play("FailBuzzer")
-        
         let correctAnswerNumber = selectedQuestionDict.correctAnswer
         questionField.text = "Sorry, time over!"
         switch correctAnswerNumber {
@@ -312,6 +283,7 @@ class ViewController: UIViewController {
         }
         enableDisableButtons(buttons: answer1Button, answer2Button, answer3Button, answer4Button, toEnable: false)
         enableDisableButtons(buttons: nextQuestionButton, toEnable: true)
+        
         // Increment the questions asked counter
         questionsAsked += 1
     }
@@ -333,24 +305,7 @@ class ViewController: UIViewController {
             
             if timeLabelText == 5{
                 self.timerLabel.textColor = self.redColor
-                
                 self.soundManager.play("Click")
-                
-                /*
-                let path = Bundle.main.path(forResource: "Click.wav", ofType:nil)!
-                let url = URL(fileURLWithPath: path)
-                
-                
-                do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-                    self.audioPlayer?.play()
-                } catch {
-                    print("Couldn't load file!")
-                }
-                */
-                
-                
-                
             }
             
             if time == self.maxTime{
