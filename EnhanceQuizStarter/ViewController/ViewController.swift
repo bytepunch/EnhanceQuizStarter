@@ -33,16 +33,8 @@ class ViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var questionField: UILabel!
-    
-    /*
-    @IBOutlet weak var nextQuestionButton: UIButton!
-    @IBOutlet weak var answer1Button: UIButton!
-    @IBOutlet weak var answer2Button: UIButton!
-    @IBOutlet weak var answer3Button: UIButton!
-    @IBOutlet weak var answer4Button: UIButton!
-    @IBOutlet weak var playAgainButton: UIButton!
-    */
-    
+
+    // IBOutlet colletion
     @IBOutlet var buttons: [UIButton]!
     
     @IBOutlet weak var timerSwitch: UISwitch!
@@ -189,12 +181,6 @@ class ViewController: UIViewController {
         
         // Increment the questions asked counter
         questionsAsked += 1
-        
-        //checkGivenAnswer(sender)
-        
-        
-        
-        
     }
     
     @IBAction func newxtQuestion(_ sender: Any) {
