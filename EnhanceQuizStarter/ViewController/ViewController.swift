@@ -33,20 +33,24 @@ class ViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var questionField: UILabel!
+    
+    /*
     @IBOutlet weak var nextQuestionButton: UIButton!
     @IBOutlet weak var answer1Button: UIButton!
     @IBOutlet weak var answer2Button: UIButton!
     @IBOutlet weak var answer3Button: UIButton!
     @IBOutlet weak var answer4Button: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
+    */
+    
+    @IBOutlet var buttons: [UIButton]!
+    
     @IBOutlet weak var timerSwitch: UISwitch!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
+    
     @IBOutlet weak var timerStackView: UIStackView!
     @IBOutlet weak var answersStackView: UIStackView!
-    
- 
-    
     
     
     override func viewDidLoad() {
@@ -57,10 +61,9 @@ class ViewController: UIViewController {
         questions = questionProvider.provideRandomizedQuestions()
        
         // Rounded corners for all buttons
-        let buttons = [answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton, playAgainButton]
         for button in buttons{
-            button?.layer.cornerRadius = CGFloat(cornerRadius)
-            button?.clipsToBounds = true
+            button.layer.cornerRadius = CGFloat(cornerRadius)
+            button.clipsToBounds = true
         }
     }
     
@@ -68,35 +71,38 @@ class ViewController: UIViewController {
     func displayQuestion() {
         
         // Reset colors of all buttons
-        reset(answerButtons: answer1Button, answer2Button, answer3Button, answer4Button)
+        reset(answerButtons: buttons[0...3])
+
         
         let questionDictionary = questions[questionsAsked]
         questionField.text = questionDictionary.problem
         
-        answer1Button.setTitle(questionDictionary.answer1, for: .normal)
-        answer2Button.setTitle(questionDictionary.answer2, for: .normal)
-        answer3Button.setTitle(questionDictionary.answer3, for: .normal)
+        buttons[0].setTitle(questionDictionary.answer1, for: .normal)
+        buttons[1].setTitle(questionDictionary.answer2, for: .normal)
+        buttons[2].setTitle(questionDictionary.answer3, for: .normal)
         
         // In case show the 4th button
         if questionDictionary.choices == 4{
-            answer4Button.setTitle(questionDictionary.answer4, for: .normal)
-            unHide(views: answer4Button)
+            buttons[3].setTitle(questionDictionary.answer4, for: .normal)
+            unHide(views: buttons[3])
         } else{
-            hide(views: answer4Button)
+            hide(views: buttons[3])
         }
-        hide(views: playAgainButton)
+        hide(views: buttons[5])
         
-        nextQuestionButton.isEnabled = false
+        buttons[4].isEnabled = false
         
     }
     
     // Displays the score at end screen
     func displayScore() {
+        
         // Hide the answer Button
-        hide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton, timerLabel)
-
+        hide(views: buttons[4], timerLabel)
+        hide(views: buttons[0...3])
+        
         // Display play again button
-        unHide(views: playAgainButton)
+        unHide(views: buttons[5])
         
         // Less than the half of questions correct change String
         if correctQuestions <= questionsPerRound/2{
@@ -131,7 +137,7 @@ class ViewController: UIViewController {
         timerStackView.isHidden = true
         
         // Unhide
-        unHide(views: timerLabel, answersStackView, nextQuestionButton, timerLabel, questionField)
+        unHide(views: timerLabel, answersStackView, buttons[4], timerLabel, questionField)
 
         if timerSwitch.isOn{
             unHide(views: timerLabel)
@@ -165,13 +171,13 @@ class ViewController: UIViewController {
             
             switch questions[questionsAsked].correctAnswer{
             case 1:
-                mark(correctAnswerButton: answer1Button)
+                mark(correctAnswerButton: buttons[0])
             case 2:
-                mark(correctAnswerButton: answer2Button)
+                mark(correctAnswerButton: buttons[1])
             case 3:
-                mark(correctAnswerButton: answer3Button)
+                mark(correctAnswerButton: buttons[2])
             case 4:
-                mark(correctAnswerButton: answer4Button)
+                mark(correctAnswerButton: buttons[3])
             default:
                 break
             }
@@ -179,7 +185,7 @@ class ViewController: UIViewController {
         }
         
         
-        nextQuestionButton.isEnabled = true
+        buttons[4].isEnabled = true
         
         // Increment the questions asked counter
         questionsAsked += 1
@@ -200,7 +206,9 @@ class ViewController: UIViewController {
     @IBAction func playAgain(_ sender: UIButton) {
         
         // Show the answer buttons
-        unHide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
+        //unHide(views: answer1Button, answer2Button, answer3Button, answer4Button, nextQuestionButton)
+        unHide(buttonArraySlice: buttons[0...3])
+        unHide(views: buttons[4])
         
         // Show timer label when lighning mode is on
         if timerSwitch.isOn{
@@ -233,6 +241,13 @@ class ViewController: UIViewController {
             view.isHidden = true
         }
     }
+    
+    func hide(views: ArraySlice<UIButton>){
+        for view in views{
+            view.isHidden = true
+        }
+    }
+    
 
     func unHide(views: UIView...){
         for view in views{
@@ -240,23 +255,40 @@ class ViewController: UIViewController {
         }
     }
     
-    func mark(correctAnswerButton: UIView){
+    func unHide(buttonArraySlice: ArraySlice<UIButton>){
+        for button in buttonArraySlice{
+            button.isHidden = false
+        }
+    }
+    
+    func mark(correctAnswerButton: UIButton){
         correctAnswerButton.backgroundColor = UIColor.correctAnswerColor
         correctAnswerButton.tintColor = UIColor.black
         animateButton(correctAnswerButton)
     }
     
-    func reset(answerButtons: UIView...){
+    func reset(answerButtons: ArraySlice<UIButton>){
         for view in answerButtons{
             view.backgroundColor = UIColor.normalColor
             view.tintColor = UIColor.white
         }
         
-          enableDisableButtons(buttons: answer1Button, answer2Button, answer3Button, answer4Button, toEnable: true)
+          enableDisableButtons(buttons: buttons[0...3], toEnable: true)
     }
+    
     
     // Enables or disables an amount of UIButtons
     func enableDisableButtons(buttons: UIButton..., toEnable: Bool){
+        for button in buttons{
+            if toEnable == true{
+                button.isEnabled = true
+            } else{
+                button.isEnabled = false
+            }
+        }
+    }
+    
+    func enableDisableButtons(buttons: ArraySlice<UIButton>, toEnable: Bool){
         for button in buttons{
             if toEnable == true{
                 button.isEnabled = true
@@ -274,18 +306,18 @@ class ViewController: UIViewController {
         
         switch questions[questionsAsked].correctAnswer {
         case 1:
-            mark(correctAnswerButton: answer1Button)
+            mark(correctAnswerButton: buttons[0])
         case 2:
-            mark(correctAnswerButton: answer2Button)
+            mark(correctAnswerButton: buttons[1])
         case 3:
-            mark(correctAnswerButton: answer3Button)
+            mark(correctAnswerButton: buttons[2])
         case 4:
-            mark(correctAnswerButton: answer4Button)
+            mark(correctAnswerButton: buttons[3])
         default:
             break
         }
-        enableDisableButtons(buttons: answer1Button, answer2Button, answer3Button, answer4Button, toEnable: false)
-        enableDisableButtons(buttons: nextQuestionButton, toEnable: true)
+        enableDisableButtons(buttons: buttons[0...3], toEnable: false)
+        enableDisableButtons(buttons: buttons[4], toEnable: true)
         // Increment the questions asked counter
         questionsAsked += 1
         
@@ -317,8 +349,10 @@ class ViewController: UIViewController {
         })
 
     }
+ 
+ 
 
-}
+} // ViewController class
 
 
 extension UIColor {

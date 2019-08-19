@@ -87,20 +87,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
-                                <rect key="frame" x="20" y="782" width="374" height="60"/>
-                                <color key="backgroundColor" red="0.035294117647058823" green="0.51764705882352935" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="kpq-ER-IK0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Play Again"/>
-                                <connections>
-                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DS-Q9-gCH"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-1C-ga6" userLabel="Next Question Button">
+                            <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1Q-1C-ga6" userLabel="Next Question Button">
                                 <rect key="frame" x="20" y="782" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.47450980392156861" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -111,6 +98,19 @@
                                 <state key="normal" title="Next Question"/>
                                 <connections>
                                     <action selector="newxtQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baF-iR-oiJ"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eic-Nx-foS">
+                                <rect key="frame" x="20" y="782" width="374" height="60"/>
+                                <color key="backgroundColor" red="0.035294117647058823" green="0.51764705882352935" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kpq-ER-IK0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Play Again"/>
+                                <connections>
+                                    <action selector="playAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0DS-Q9-gCH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzx-mG-C1o">
@@ -166,18 +166,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="answer1Button" destination="CSn-ih-qRR" id="hg6-Oo-zuS"/>
-                        <outlet property="answer2Button" destination="qYh-2d-v8I" id="WJN-x7-R7o"/>
-                        <outlet property="answer3Button" destination="X4C-bg-A4X" id="9oo-eu-1LB"/>
-                        <outlet property="answer4Button" destination="zAL-gk-o3B" id="F7E-yb-Acg"/>
                         <outlet property="answersStackView" destination="flq-Lw-96e" id="GvB-Vk-8TL"/>
-                        <outlet property="nextQuestionButton" destination="w1Q-1C-ga6" id="5dP-gI-kLe"/>
-                        <outlet property="playAgainButton" destination="eic-Nx-foS" id="fZz-Md-Y70"/>
                         <outlet property="questionField" destination="dCF-BL-dDa" id="HIQ-UX-KNe"/>
                         <outlet property="startButton" destination="Vzx-mG-C1o" id="ahq-qG-rAO"/>
                         <outlet property="timerLabel" destination="cKO-PZ-c9o" id="QNq-Mm-qvX"/>
                         <outlet property="timerStackView" destination="64Q-Wr-5NF" id="Q5Z-jQ-PuQ"/>
                         <outlet property="timerSwitch" destination="a2l-61-Dyd" id="5mc-Wo-Lhm"/>
+                        <outletCollection property="buttons" destination="CSn-ih-qRR" collectionClass="NSMutableArray" id="9Aj-4f-qnm"/>
+                        <outletCollection property="buttons" destination="qYh-2d-v8I" collectionClass="NSMutableArray" id="O4X-gz-QiN"/>
+                        <outletCollection property="buttons" destination="X4C-bg-A4X" collectionClass="NSMutableArray" id="KKI-3R-lZ3"/>
+                        <outletCollection property="buttons" destination="zAL-gk-o3B" collectionClass="NSMutableArray" id="yWe-Fr-l3d"/>
+                        <outletCollection property="buttons" destination="w1Q-1C-ga6" collectionClass="NSMutableArray" id="rRe-Qz-K3v"/>
+                        <outletCollection property="buttons" destination="eic-Nx-foS" collectionClass="NSMutableArray" id="X5V-m7-EFj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
