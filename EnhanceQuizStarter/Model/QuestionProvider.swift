@@ -5,6 +5,8 @@
 //  Created by Jörg Klausewitz on 29.05.19.
 //  Copyright © 2019 Treehouse. All rights reserved.
 //
+import UIKit
+
 
 class QuestionProvider{
     
@@ -43,6 +45,14 @@ class QuestionProvider{
     func provideRandomizedQuestions() -> [Question] {
         let shuffledQuestions = questions.shuffled()
         return shuffledQuestions
+    }
+    
+    func checkIfAnswerIsCorrect(from question: Question, answerButton: UIButton ) -> Bool{
+        if question.correctAnswer == answerButton.tag {
+            return true
+        }  else{
+            return false
+        }
     }
     
 }

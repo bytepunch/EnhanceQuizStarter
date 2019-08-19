@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     var questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
-    var indexOfSelectedQuestion = 0
     let cornerRadius = 10
     var timer: Timer? = nil
     let maxTime = 15
@@ -26,13 +25,11 @@ class ViewController: UIViewController {
     // MARK: - SoundManager
     let soundManager = SoundManager()
     
-    let greenColor = UIColor(red: 0/255, green: 128/255, blue: 0/255, alpha: 1.0)
-    let redColor = UIColor(red: 220/255, green: 20/255, blue: 60/255, alpha: 1.0)
-    let normalColor = UIColor(red: 175/255, green: 192/255, blue: 205/255, alpha: 1.0)
-    
     // Question provider
     let questionProvider = QuestionProvider()
     var questions = [Question]()
+    var question: Question? = nil
+    
     
     // MARK: - Outlets
     @IBOutlet weak var questionField: UILabel!
@@ -47,6 +44,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var timerStackView: UIStackView!
     @IBOutlet weak var answersStackView: UIStackView!
+    
+ 
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +109,6 @@ class ViewController: UIViewController {
     // Checks
     func nextRound() {
         if questionsAsked == questionsPerRound {
-            
             // Game is over
             displayScore()
         } else {
@@ -142,14 +142,60 @@ class ViewController: UIViewController {
     
     // Anweser button pressed calls function which checks if answer is correct
     @IBAction func pressAnswerButton(_ sender: UIButton) {
-        checkGivenAnswer(sender)
+        
+        // Stop timer
+        timer?.invalidate()
+        
+        if questionProvider.checkIfAnswerIsCorrect(from: questions[questionsAsked], answerButton: sender) {
+            
+            soundManager.play("Applause")
+            
+            correctQuestions += 1
+            questionField.text = "Correct!"
+            sender.backgroundColor = UIColor.correctAnswerColor
+            sender.tintColor = UIColor.black
+            
+        } else {
+            
+            soundManager.play("FailBuzzer")
+            
+            questionField.text = "Sorry, wrong answer!"
+            sender.backgroundColor = UIColor.falseAnswerColor
+            sender.tintColor = UIColor.black
+            
+            switch questions[questionsAsked].correctAnswer{
+            case 1:
+                mark(correctAnswerButton: answer1Button)
+            case 2:
+                mark(correctAnswerButton: answer2Button)
+            case 3:
+                mark(correctAnswerButton: answer3Button)
+            case 4:
+                mark(correctAnswerButton: answer4Button)
+            default:
+                break
+            }
+            
+        }
+        
+        
+        nextQuestionButton.isEnabled = true
+        
+        // Increment the questions asked counter
+        questionsAsked += 1
+        
+        //checkGivenAnswer(sender)
+        
+        
+        
+        
     }
     
     @IBAction func newxtQuestion(_ sender: Any) {
-        //stopSound()
         soundManager.stop()
         nextRound()
     }
+    
     
     @IBAction func playAgain(_ sender: UIButton) {
         
@@ -168,7 +214,8 @@ class ViewController: UIViewController {
     }
     
     // MARK: Helper functions
-    // Source: StackOverflow
+    
+    // Source: Animation StackOverflow
     func animateButton(_ buttonToAnimate: UIView){
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 0.8, options: .curveEaseIn,
@@ -194,14 +241,14 @@ class ViewController: UIViewController {
     }
     
     func mark(correctAnswerButton: UIView){
-        correctAnswerButton.backgroundColor = greenColor
+        correctAnswerButton.backgroundColor = UIColor.correctAnswerColor
         correctAnswerButton.tintColor = UIColor.black
         animateButton(correctAnswerButton)
     }
     
     func reset(answerButtons: UIView...){
         for view in answerButtons{
-            view.backgroundColor = normalColor
+            view.backgroundColor = UIColor.normalColor
             view.tintColor = UIColor.white
         }
         
@@ -219,57 +266,13 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkGivenAnswer(_ sender: UIButton){
-        
-        // Stop timer
-        timer?.invalidate()
-        
-        let selectedQuestionDict = questions[questionsAsked]
-        
-        if (sender.tag == selectedQuestionDict.correctAnswer) {
-            soundManager.play("Applause")
-            
-            correctQuestions += 1
-            questionField.text = "Correct!"
-            sender.backgroundColor = greenColor
-            sender.tintColor = UIColor.black
-            
-            
-        } else {
-            soundManager.play("FailBuzzer")
-            
-            questionField.text = "Sorry, wrong answer!"
-            sender.backgroundColor = redColor
-            sender.tintColor = UIColor.black
-            
-            switch selectedQuestionDict.correctAnswer{
-            case 1:
-                mark(correctAnswerButton: answer1Button)
-            case 2:
-                mark(correctAnswerButton: answer2Button)
-            case 3:
-                mark(correctAnswerButton: answer3Button)
-            case 4:
-                mark(correctAnswerButton: answer4Button)
-            default:
-                break
-            }
-        }
-        
-        nextQuestionButton.isEnabled = true
-        
-        // Increment the questions asked counter
-        questionsAsked += 1
-        
-    }
     
     func updateUIWhenTimeOver(){
-        let selectedQuestionDict = questions[questionsAsked]
-
         soundManager.play("FailBuzzer")
-        let correctAnswerNumber = selectedQuestionDict.correctAnswer
+        
         questionField.text = "Sorry, time over!"
-        switch correctAnswerNumber {
+        
+        switch questions[questionsAsked].correctAnswer {
         case 1:
             mark(correctAnswerButton: answer1Button)
         case 2:
@@ -283,11 +286,10 @@ class ViewController: UIViewController {
         }
         enableDisableButtons(buttons: answer1Button, answer2Button, answer3Button, answer4Button, toEnable: false)
         enableDisableButtons(buttons: nextQuestionButton, toEnable: true)
-        
         // Increment the questions asked counter
         questionsAsked += 1
+        
     }
-    
     
     func startTimer(){
         
@@ -304,7 +306,7 @@ class ViewController: UIViewController {
             self.timerLabel.text = String(timeLabelText)
             
             if timeLabelText == 5{
-                self.timerLabel.textColor = self.redColor
+                self.timerLabel.textColor = UIColor.red
                 self.soundManager.play("Click")
             }
             
@@ -316,5 +318,12 @@ class ViewController: UIViewController {
 
     }
 
+}
+
+
+extension UIColor {
+    static var correctAnswerColor: UIColor  { return UIColor(red: 0/255, green: 128/255, blue: 0/255, alpha: 1.0) }
+    static var falseAnswerColor: UIColor { return UIColor(red: 220/255, green: 20/255, blue: 60/255, alpha: 1.0) }
+    static var normalColor: UIColor { return UIColor(red: 175/255, green: 192/255, blue: 205/255, alpha: 1.0) }
 }
 

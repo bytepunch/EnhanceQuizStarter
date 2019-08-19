@@ -10,7 +10,6 @@ import Foundation
 
 class Question{
     
-    // ["Question": "Who invented the telephone?", "Answer1": "Morse", "Answer2": "Bell", "Answer3": "Da Vinci", "Correct": "2", "Choices": "3" ],
 
     let problem: String
     let answer1: String
